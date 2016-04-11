@@ -27,7 +27,7 @@ Intercepted::~Intercepted()
 
 QRectF Intercepted::boundingRect() const
 {
-    return QRect(0,0,20,20);
+    return QRect(-10,-10,20,20);
 }
 
 void Intercepted::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
@@ -44,6 +44,8 @@ void Intercepted::advance(int phase)
     if(!phase){
         return;
     }
+    angle=57.29*atan(0.5*cos(0.05*location.x()));
+    setRotation(angle);
     setPos(mapToParent(speed,0));
 }
 

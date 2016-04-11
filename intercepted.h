@@ -30,6 +30,7 @@ private:
     qreal speed;
     qreal time;
 
+
 };
 
 #endif // INTERCEPTED_H

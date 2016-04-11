@@ -24,7 +24,7 @@ AAG::~AAG()
 
 QRectF AAG::boundingRect() const
 {
-    return QRect(0,0,20,20);
+    return QRect(-10,-10,20,20);
 }
 
 void AAG::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
