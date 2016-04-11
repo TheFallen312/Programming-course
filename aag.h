@@ -6,6 +6,8 @@
 #include <QGraphicsScene>
 #include <QObject>
 
+// AAG class description. Git Test.
+
 class AAG : public QGraphicsObject
 {
 Q_OBJECT
