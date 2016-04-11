@@ -1,2 +1,2 @@
 # Programming-course
-Repository for saving and sharing my university projects
+Repository for saving and sharing my university projects.
