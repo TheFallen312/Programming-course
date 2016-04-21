@@ -18,7 +18,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QPen blackpen(Qt::black);
     blackpen.setWidth(2);
 
-    Intercepted *item1 = new Intercepted(-200,-150,0,8);
+    Intercepted *item1 = new Intercepted(-2000,-3000,0,2000);
     scene->addItem(item1);
     AAG *item2 = new AAG();
     scene->addItem(item2);
@@ -55,7 +55,7 @@ void MainWindow::Intercept(Intercepted *target)
 {
     if(!target->chased)
     {
-        Interceptor *item = new Interceptor(0,0,10,target);
+        Interceptor *item = new Interceptor(0,0,2000,target);
         scene->addItem(item);
         connect(item,SIGNAL(IsCollision()),this,SLOT(StopTimer()));
     }
