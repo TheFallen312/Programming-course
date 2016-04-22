@@ -4,15 +4,15 @@
 Interceptor::Interceptor()
 {
     angle = 0;
-    speed = 1500/300;
+    speed = 5;
     setPos(mapToParent(0,0));
 }
 
 
 Interceptor::Interceptor(qreal x, qreal y, qreal h, Intercepted *item)
 {
-    speed = h/300;
-    setPos(mapToParent(x/30,y/30));
+    speed = (h*0.28)/100;
+    setPos(mapToParent(x*100,y*100));
     target = item;
 }
 

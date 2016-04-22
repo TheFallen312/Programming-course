@@ -18,9 +18,9 @@ MainWindow::MainWindow(QWidget *parent) :
     QPen blackpen(Qt::black);
     blackpen.setWidth(2);
 
-    Intercepted *item1 = new Intercepted(-2000,-3000,0,2000);
+    Intercepted *item1 = new Intercepted(-2,-2,0,1500);
     scene->addItem(item1);
-    AAG *item2 = new AAG();
+    AAG *item2 = new AAG(0,0,10);
     scene->addItem(item2);
 
     timer = new QTimer(this);

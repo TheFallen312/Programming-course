@@ -13,7 +13,7 @@ AAG::AAG(qreal x, qreal y, qreal r)
 {
     AAG_X = x;
     AAG_Y = y;
-    range = r;
+    range = r*100;
     setPos(mapToParent(AAG_X,AAG_Y));
 }
 

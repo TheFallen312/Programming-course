@@ -5,7 +5,7 @@
 Intercepted::Intercepted()
 {
     angle = 0;
-    speed = 1500/300;
+    speed = 500;
     setPos(mapToParent(0,0));
     time=0;
     chased = 0;
@@ -13,9 +13,9 @@ Intercepted::Intercepted()
 
 Intercepted::Intercepted(qreal x, qreal y, qreal w,qreal h)
 {
-    speed = h/300;
+    speed = (h*0.28)/100;
     setRotation(w);
-    setPos(mapToParent(x/30,y/30));
+    setPos(mapToParent(x*100,y*100));
     time=0;
     chased = 0;
 }
