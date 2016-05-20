@@ -35,7 +35,10 @@ void Interceptor::paint(QPainter *painter, const QStyleOptionGraphicsItem *optio
     painter->fillRect(rec,Brush);
     painter->drawRect(rec);
     if(this->collidesWithItem(target))
+    {
         emit IsCollision();
+        this->~Interceptor();
+    }
 }
 
 void Interceptor::advance(int phase)

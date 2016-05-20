@@ -24,9 +24,19 @@ MainWindow::MainWindow(QWidget *parent) :
     scene->addItem(item2);
 
     timer = new QTimer(this);
+    Launch_timer = new QTimer(this);
+    Launch_timer->setSingleShot(true);
+    Reload_timer = new QTimer(this);
+    Reload_timer->setSingleShot(true);
     connect(timer, SIGNAL(timeout()),scene,SLOT(advance()));
     connect(item2,SIGNAL(Peleng(qreal,QPointF)),item1,SLOT(InRange(qreal,QPointF)));
-    connect(item1,SIGNAL(mirrored(Intercepted*)),this,SLOT(Intercept(Intercepted*)));
+    connect(item1,SIGNAL(mirrored(Intercepted*)),item2,SLOT(Shot(Intercepted*)));
+    connect(item2,SIGNAL(Launch(Intercepted*)),this,SLOT(Intercept(Intercepted*)));
+    connect(item1,SIGNAL(Destroyed()),this,SLOT(StopTimer()));
+    connect(item2,SIGNAL(Prep()),this,SLOT(Launch_prep()));
+    connect(item2,SIGNAL(Reload()),this,SLOT(Reload()));
+    connect(Launch_timer,SIGNAL(timeout()),item2,SLOT(SetReady()));
+    connect(Reload_timer,SIGNAL(timeout()),item2,SLOT(SetReady()));
 
 
 }
@@ -53,11 +63,20 @@ void MainWindow::StopTimer()
 
 void MainWindow::Intercept(Intercepted *target)
 {
-    if(!target->chased)
-    {
-        Interceptor *item = new Interceptor(0,0,2000,target);
-        scene->addItem(item);
-        connect(item,SIGNAL(IsCollision()),this,SLOT(StopTimer()));
-    }
+    Interceptor *item = new Interceptor(0,0,2000,target);
+    scene->addItem(item);
+    connect(item,SIGNAL(IsCollision()),target,SLOT(Hit()));
+
+}
+
+void MainWindow::Launch_prep()
+{
+    Launch_timer->start(500);
+
+}
+
+void MainWindow::Reload()
+{
+    Launch_timer->start(2000);
 
 }

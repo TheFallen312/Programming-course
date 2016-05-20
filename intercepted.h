@@ -5,7 +5,7 @@
 #include <QGraphicsObject>
 #include <QPainter>
 #include <QGraphicsScene>
-#include "aag.h"
+
 
 class Intercepted : public QGraphicsObject
 {
@@ -16,19 +16,22 @@ public:
     ~Intercepted();
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
-    bool chased;
+
 
 protected:
     void advance(int phase);
 signals:
     void mirrored(Intercepted *target);
     void IsCollision();
+    void Destroyed();
 public slots:
     void InRange(qreal range, QPointF pos);
+    void Hit();
 private:
     qreal angle;
     qreal speed;
     qreal time;
+    int battlegroup_amount;
 
 
 };
