@@ -11,8 +11,8 @@ Interceptor::Interceptor()
 
 Interceptor::Interceptor(qreal x, qreal y, qreal h, Intercepted *item)
 {
-    speed = h;
-    setPos(mapToParent(x,y));
+    speed = (h*0.28)/100;
+    setPos(mapToParent(x*100,y*100));
     target = item;
 }
 
@@ -35,7 +35,10 @@ void Interceptor::paint(QPainter *painter, const QStyleOptionGraphicsItem *optio
     painter->fillRect(rec,Brush);
     painter->drawRect(rec);
     if(this->collidesWithItem(target))
+    {
         emit IsCollision();
+        this->~Interceptor();
+    }
 }
 
 void Interceptor::advance(int phase)

@@ -1,11 +1,14 @@
 #include "aag.h"
 #include "intercepted.h"
+#include <QTimer>
 
 AAG::AAG()
 {
     AAG_X = 0;
     AAG_Y = 0;
     range = 200;
+    rocket_amount=4;
+    ready=true;
 
 }
 
@@ -13,8 +16,10 @@ AAG::AAG(qreal x, qreal y, qreal r)
 {
     AAG_X = x;
     AAG_Y = y;
-    range = r;
+    range = r*100;
     setPos(mapToParent(AAG_X,AAG_Y));
+    rocket_amount=4;
+    ready=true;
 }
 
 AAG::~AAG()
@@ -35,6 +40,7 @@ void AAG::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidg
     painter->drawRect(rec);
 }
 
+
 void AAG::advance(int phase)
 {
     if(!phase)
@@ -44,5 +50,31 @@ void AAG::advance(int phase)
 void AAG::Intercept()
 {
 
+}
+
+void AAG::Shot(Intercepted *target)
+{
+    if(ready)
+    {
+       if(rocket_amount>0)
+        {
+            ready = false;
+            rocket_amount--;
+            emit Prep();
+            emit Launch(target);
+        }
+       if(rocket_amount<=0)
+       {
+           ready = false;
+           rocket_amount=4;
+           emit Reload();
+       }
+    }
+
+}
+
+void AAG::SetReady()
+{
+    ready = true;
 }
 

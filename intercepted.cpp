@@ -5,19 +5,19 @@
 Intercepted::Intercepted()
 {
     angle = 0;
-    speed = 5;
+    speed = 500;
     setPos(mapToParent(0,0));
     time=0;
-    chased = 0;
+    battlegroup_amount=4;
 }
 
 Intercepted::Intercepted(qreal x, qreal y, qreal w,qreal h)
 {
-    speed = h;
+    speed = (h*0.28)/100;
     setRotation(w);
-    setPos(mapToParent(x,y));
+    setPos(mapToParent(x*100,y*100));
+    battlegroup_amount=4;
     time=0;
-    chased = 0;
 }
 
 Intercepted::~Intercepted()
@@ -47,6 +47,8 @@ void Intercepted::advance(int phase)
     angle=57.29*atan(0.5*cos(0.05*location.x()));
     setRotation(angle);
     setPos(mapToParent(speed,0));
+    if(battlegroup_amount<=0)
+        emit Destroyed();
 }
 
 void Intercepted::InRange(qreal range, QPointF pos)
@@ -61,8 +63,11 @@ void Intercepted::InRange(qreal range, QPointF pos)
     if(r<=range)
     {
         emit mirrored(this);
-        chased = 1;
-
     }
+}
+
+void Intercepted::Hit()
+{
+        battlegroup_amount--;
 }
 

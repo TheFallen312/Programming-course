@@ -31,10 +31,18 @@ private slots:
 
     void Intercept(Intercepted *target);
 
+    void Launch_prep();
+
+    void Reload();
+
+
+
 private:
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
     QTimer *timer;
+    QTimer *Launch_timer;
+    QTimer *Reload_timer;
 
 };
 
