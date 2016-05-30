@@ -19,6 +19,11 @@ public:
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     bool ready;
+    qreal getLaunch_time();
+    qreal getReload_time();
+    void setLaunch_time(qreal time);
+    void setReload_time(qreal time);
+    void setRange(qreal r);
 
 protected:
     void advance(int phase);

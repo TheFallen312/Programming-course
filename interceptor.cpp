@@ -61,6 +61,11 @@ void Interceptor::advance(int phase)
 
 }
 
+void Interceptor::Destruction()
+{
+    this->~Interceptor();
+}
+
 
 
 

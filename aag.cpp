@@ -40,6 +40,31 @@ void AAG::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidg
     painter->drawRect(rec);
 }
 
+qreal AAG::getLaunch_time()
+{
+    return launch_time;
+}
+
+qreal AAG::getReload_time()
+{
+    return reload_time;
+}
+
+void AAG::setLaunch_time(qreal time)
+{
+    launch_time = time;
+}
+
+void AAG::setReload_time(qreal time)
+{
+    reload_time = time;
+}
+
+void AAG::setRange(qreal r)
+{
+    range = r*100;
+}
+
 
 void AAG::advance(int phase)
 {

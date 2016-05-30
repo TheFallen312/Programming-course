@@ -48,7 +48,10 @@ void Intercepted::advance(int phase)
     setRotation(angle);
     setPos(mapToParent(speed,0));
     if(battlegroup_amount<=0)
+    {
         emit Destroyed();
+        this->~Intercepted();
+    }
 }
 
 void Intercepted::InRange(qreal range, QPointF pos)

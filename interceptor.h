@@ -22,6 +22,9 @@ protected:
     void advance(int phase);
 signals:
     void IsCollision();
+public slots:
+    void Destruction();
+
 private:
     qreal angle;
     qreal speed;
